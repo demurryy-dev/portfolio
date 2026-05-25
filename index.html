@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Laziz Qodirjonov</title>
+
+  <style>
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #050816, #0b1026, #111827);
+      color: white;
+      overflow-x: hidden;
+    }
+
+    header {
+      width: 100%;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      text-align: center;
+      padding: 40px;
+      position: relative;
+    }
+
+    header::before {
+      content: "";
+      position: absolute;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(0,255,255,0.3), transparent 70%);
+      top: -100px;
+      left: -100px;
+      filter: blur(50px);
+    }
+
+    header::after {
+      content: "";
+      position: absolute;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(255,0,255,0.3), transparent 70%);
+      bottom: -100px;
+      right: -100px;
+      filter: blur(50px);
+    }
+
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      padding: 20px;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      backdrop-filter: blur(10px);
+      z-index: 1000;
+      background: rgba(0,0,0,0.3);
+    }
+
+    nav a {
+      text-decoration: none;
+      color: white;
+      padding: 12px 24px;
+      border-radius: 12px;
+      font-size: 17px;
+      transition: 0.4s;
+      font-weight: bold;
+    }
+
+    nav a:nth-child(1) {
+      background: linear-gradient(45deg,#1e293b,#334155);
+      box-shadow: 0 0 20px rgba(59,130,246,0.45);
+    }
+
+    nav a:nth-child(2) {
+      background: linear-gradient(45deg,#0f172a,#1e293b);
+      box-shadow: 0 0 20px rgba(96,165,250,0.4);
+    }
+
+    nav a:nth-child(3) {
+      background: linear-gradient(45deg,#111827,#374151);
+      box-shadow: 0 0 20px rgba(34,197,94,0.35);
+    }
+
+    nav a:nth-child(4) {
+      background: linear-gradient(45deg,#1f2937,#4b5563);
+      box-shadow: 0 0 20px rgba(148,163,184,0.35);
+      color: white;
+    }
+
+    nav a:nth-child(5) {
+      background: linear-gradient(45deg,#1f2937,#4b5563);
+      box-shadow: 0 0 20px rgba(148,163,184,0.35);
+    }
+
+    nav a:hover {
+      transform: translateY(-5px) scale(1.08);
+    }
+
+    .title {
+      font-size: 80px;
+      font-weight: bold;
+      background: linear-gradient(90deg,#60a5fa,#cbd5e1,#818cf8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: glow 4s infinite linear;
+      z-index: 2;
+    }
+
+    @keyframes glow {
+      0% { filter: hue-rotate(0deg); }
+      100% { filter: hue-rotate(360deg); }
+    }
+
+    .subtitle {
+      margin-top: 20px;
+      font-size: 25px;
+      color: #d1d5db;
+      max-width: 700px;
+      line-height: 1.7;
+      z-index: 2;
+    }
+
+    .hero-buttons {
+      margin-top: 40px;
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      justify-content: center;
+      z-index: 2;
+    }
+
+    .btn {
+      padding: 16px 34px;
+      border: none;
+      border-radius: 14px;
+      color: white;
+      font-size: 18px;
+      cursor: pointer;
+      transition: 0.4s;
+      font-weight: bold;
+    }
+
+    .btn1 {
+      background: linear-gradient(45deg,#111827,#1e293b);
+      box-shadow: 0 0 25px rgba(59,130,246,0.45);
+    }
+
+    .btn2 {
+      background: linear-gradient(45deg,#1f2937,#374151);
+      box-shadow: 0 0 25px rgba(34,197,94,0.35);
+    }
+
+    .btn3 {
+      background: linear-gradient(45deg,#0f172a,#334155);
+      box-shadow: 0 0 25px rgba(148,163,184,0.4);
+    }
+
+    .btn4 {
+      background: linear-gradient(45deg,#111827,#475569);
+      box-shadow: 0 0 25px rgba(99,102,241,0.4);
+    }
+
+    .btn:hover {
+      transform: scale(1.08);
+    }
+
+    section {
+      padding: 120px 10%;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 50px;
+      margin-bottom: 60px;
+      background: linear-gradient(90deg,#00dbde,#fc00ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(260px,1fr));
+      gap: 30px;
+    }
+
+    .card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      padding: 35px;
+      border-radius: 24px;
+      transition: 0.5s;
+      backdrop-filter: blur(12px);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      width: 150px;
+      height: 150px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 50%;
+      top: -50px;
+      right: -50px;
+    }
+
+    .card:hover {
+      transform: translateY(-12px) scale(1.02);
+      box-shadow: 0 0 35px rgba(0,255,255,0.4);
+    }
+
+    .card h3 {
+      font-size: 30px;
+      margin-bottom: 20px;
+      color: #00ffff;
+    }
+
+    .card p {
+      color: #d1d5db;
+      line-height: 1.8;
+      font-size: 17px;
+    }
+
+    .skills {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 40px;
+    }
+
+    .skill {
+      padding: 18px 30px;
+      border-radius: 16px;
+      font-weight: bold;
+      font-size: 18px;
+      transition: 0.4s;
+    }
+
+    .skill:nth-child(1) { background: linear-gradient(45deg,#ff512f,#f09819); }
+    .skill:nth-child(2) { background: linear-gradient(45deg,#0f172a,#1e293b); }
+    .skill:nth-child(3) { background: linear-gradient(45deg,#111827,#374151); }
+    .skill:nth-child(4) { background: linear-gradient(45deg,#111827,#1e293b); }
+    .skill:nth-child(5) { background: linear-gradient(45deg,#8e2de2,#4a00e0); }
+    .skill:nth-child(6) { background: linear-gradient(45deg,#0f172a,#334155); }
+
+    .skill:hover {
+      transform: scale(1.1) rotate(2deg);
+    }
+
+    .timeline {
+      margin-top: 50px;
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+    }
+
+    .timeline-box {
+      padding: 30px;
+      border-left: 5px solid cyan;
+      background: rgba(255,255,255,0.05);
+      border-radius: 20px;
+      transition: 0.4s;
+    }
+
+    .timeline-box:hover {
+      transform: translateX(10px);
+      box-shadow: 0 0 25px rgba(0,255,255,0.4);
+    }
+
+    .timeline-box h3 {
+      margin-bottom: 10px;
+      color: #00ffff;
+      font-size: 28px;
+    }
+
+    .timeline-box p {
+      color: #d1d5db;
+      line-height: 1.8;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
+      gap: 25px;
+      margin-top: 50px;
+    }
+
+    .gallery-box {
+      height: 550px;
+      border-radius: 22px;
+      background: linear-gradient(135deg,#0f172a,#334155);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 30px;
+      font-weight: bold;
+      transition: 0.5s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .gallery-box::before {
+      content: "";
+      position: absolute;
+      width: 200%;
+      height: 200%;
+      background: rgba(255,255,255,0.1);
+      transform: rotate(45deg);
+      left: -120%;
+      transition: 0.8s;
+      z-index: 1;
+    }
+
+    .gallery-box:hover::before {
+      left: 100%;
+    }
+
+    .gallery-box:hover {
+      transform: scale(1.04);
+    }
+
+    .gallery-box img {
+      width: 100%;
+      height: 550px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .gallery-box .gallery-content {
+      position: absolute;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      bottom: 0;
+      height: 180px;
+      width: 100%;
+      background-color: rgba(5, 8, 22, 0.475);
+      transform: translateY(100%);
+      transition: transform 0.3s linear;
+      z-index: 2;
+    }
+
+    .gallery-box:hover .gallery-content {
+      transform: translateY(0);
+    }
+
+    /* USTOZLAR */
+    #teachers {
+      padding-top: 90px;
+      text-align: center;
+    }
+
+    #teachers h2 {
+      color: #7c6cff;
+      font-size: 55px;
+      margin-bottom: 50px;
+      background: none;
+      -webkit-background-clip: unset;
+      -webkit-text-fill-color: #7c6cff;
+    }
+
+    .ustoz-container {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 25px;
+    }
+
+    .ustoz-card {
+      width: 220px;
+      height: 280px;
+      border-radius: 22px;
+      padding: 4px;
+      background: linear-gradient(145deg, #3b82f6, #8b5cf6, #00d4ff);
+      box-shadow: 0 0 20px rgba(59,130,246,0.5), 0 0 40px rgba(139,92,246,0.3);
+      transition: 0.5s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .ustoz-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 18px;
+      display: block;
+    }
+
+    .ustoz-card:hover {
+      transform: translateY(-10px) scale(1.03);
+      box-shadow: 0 0 30px #3b82f6, 0 0 60px #8b5cf6;
+    }
+
+    .ustoz-card .ustoz-content {
+      position: absolute;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      bottom: 0;
+      height: 90px;
+      width: 100%;
+      background-color: rgba(5, 8, 22, 0.475);
+      transform: translateY(100%);
+      transition: transform 0.5s linear;
+    }
+
+    .ustoz-card:hover .ustoz-content {
+      transform: translateY(0);
+    }
+
+    footer {
+      padding: 70px 20px;
+      text-align: center;
+      background: rgba(255,255,255,0.03);
+      margin-top: 100px;
+    }
+
+    footer h2 {
+      font-size: 40px;
+      margin-bottom: 20px;
+      background: linear-gradient(90deg,#00dbde,#fc00ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    footer p {
+      color: #d1d5db;
+      font-size: 18px;
+      line-height: 1.8;
+    }
+
+    .footer-buttons {
+      margin-top: 30px;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .footer-buttons button {
+      padding: 16px 32px;
+      border: none;
+      border-radius: 16px;
+      color: white;
+      font-size: 17px;
+      cursor: pointer;
+      transition: 0.4s;
+      font-weight: bold;
+    }
+
+    .footer-buttons button:nth-child(1) { background: linear-gradient(45deg,#0f172a,#1e293b); }
+    .footer-buttons button:nth-child(2) { background: linear-gradient(45deg,#0f172a,#334155); }
+    .footer-buttons button:nth-child(3) { background: linear-gradient(45deg,#111827,#374151); }
+
+    .footer-buttons button:hover {
+      transform: scale(1.08);
+    }
+
+    @media(max-width: 900px) {
+      .title { font-size: 55px; }
+      .subtitle { font-size: 20px; }
+      .section-title { font-size: 38px; }
+      nav { flex-wrap: wrap; }
+    }
+
+    @media(max-width: 600px) {
+      .title { font-size: 42px; }
+      .subtitle { font-size: 17px; }
+      .btn { width: 100%; }
+      nav a { width: 100%; text-align: center; }
+    }
+
+    .section-title{
+    text-align: center;
+    font-size: 55px;
+    margin-bottom: 60px;
+    color: #7f7fff;
+    text-shadow: 0 0 20px #5f5fff;
+}
+
+.projects-container{
+    width: 90%;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 25px;
+}
+
+.project-card{
+    width: 260px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 20px;
+    overflow: hidden;
+    text-decoration: none;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.1);
+    transition: 0.4s;
+    position: relative;
+}
+
+.project-card img{
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+}
+
+.project-info{
+    padding: 15px;
+}
+
+.project-info h3{
+    color: white;
+    margin-bottom: 8px;
+    font-size: 22px;
+}
+
+.project-info p{
+    color: #cfcfcf;
+    font-size: 14px;
+}
+
+.project-card:hover{
+    transform: translateY(-12px) scale(1.03);
+    box-shadow: 0 0 25px #4f6fff;
+    border-color: #4f6fff;
+}
+
+.project-card::before{
+    content: "";
+    position: absolute;
+    top: -100%;
+    left: -100%;
+    width: 250%;
+    height: 250%;
+    background: linear-gradient(
+        45deg,
+        transparent,
+        rgba(255,255,255,0.1),
+        transparent
+    );
+    transform: rotate(25deg);
+    transition: 0.7s;
+}
+
+.project-card:hover::before{
+    top: 100%;
+    left: 100%;
+}
+
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="#about">Man haqimda</a>
+    <a href="#skills">Konikma</a>
+    <a href="#presentation">loyihalar</a>
+    <a href="#projects">Ortolarim</a>
+    <a href="#teachers">Ustozlarim</a>
+    <a href="#contact">Kontakt</a>
+    
+
+  </nav>
+
+  <header>
+    <h1 class="title">Laziz Qodirjonov</h1>
+    <p class="subtitle">
+      Hello mani ismim Laziz man 13 yoshman
+      dasturlash dizayn va zamonaviy texnologiyalarga qiziqaman
+      bu sayt maning prezentatsiya loyiham
+    </p>
+    <div class="hero-buttons">
+      <button class="btn btn1">Frontend</button>
+      <button class="btn btn2">HTML</button>
+      <button class="btn btn3">CSS</button>
+      <button class="btn btn4">VS Code</button>
+    </div>
+  </header>
+
+  <main>
+
+    <section id="about">
+      <h2 class="section-title">Man Haqimda</h2>
+      <div class="cards">
+        <article class="card">
+          <h3>Ism</h3>
+          <p>mani ismim Laziz</p>
+        </article>
+        <article class="card">
+          <h3>Yosh</h3>
+          <p>man 13 yoshman</p>
+        </article>
+        <article class="card">
+          <h3>Maqsad</h3>
+          <p>futbolchi bolish va zor sahifalar yaratish</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="skills">
+      <h2 class="section-title">Konikmalar</h2>
+      <div class="skills">
+        <div class="skill">HTML</div>
+        <div class="skill">CSS</div>
+        <div class="skill">JavaScript</div>
+        <div class="skill">Figma</div>
+        <div class="skill">Animation</div>
+        <div class="skill">VS Code</div>
+      </div>
+      <div class="timeline">
+        <div class="timeline-box">
+          <h3>HTML</h3>
+          <p>HTML yordamida saytning strukturasi yaratiladi man HTML orqali zamonaviy sahifalar tayyorlayman</p>
+        </div>
+        <div class="timeline-box">
+          <h3>CSS</h3>
+          <p>CSS yordamida saytga chiroyli dizayn ranglar va animatsiyalar qoshiladi</p>
+        </div>
+        <div class="timeline-box">
+          <h3>VS Code</h3>
+          <p>VS Code eng yaxshi kod yozish dasturlaridan biri man kopincha shu dasturda ishlayman</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="presentation">
+    <h2 class="section-title">Loyihalarim</h2>
+
+    <div class="projects-container">
+
+        <a href="https://palidrome-laziz.netlify.app/" target="_blank" class="project-card">
+            <img src="./palindrome.png" alt="">
+            <div class="project-info">
+                <h3>Palindrome Sayti</h3>
+                <p>sozlarni teskariligni tekshiradi</p>
+            </div>
+        </a>
+
+        <a href="https://3dbike-laziz.netlify.app/" target="_blank" class="project-card">
+            <img src="./bike.png" alt="">
+            <div class="project-info">
+                <h3>3D bike</h3>
+                <p>Bikeni 360 tasvirlangan</p>
+            </div>
+        </a>
+
+        <a href="https://www.theonlinecalculator.com/" target="_blank" class="project-card">
+            <img src="./calculator.png" alt="">
+            <div class="project-info">
+                <h3>Calculator</h3>
+                <p>Hisoblagich</p>
+            </div>
+        </a>
+
+        <a href="https://www.baskinrobbins.com/en" target="_blank" class="project-card">
+            <img src="./morojni.png" alt="">
+            <div class="project-info">
+                <h3>muzqaymoqlar sayti</h3>
+                <p>muzqaymoqlar</p>
+            </div>
+        </a>
+
+        <a href="https://plnts.com/en" target="_blank" class="project-card">
+            <img src="./osimliklar.png" alt="">
+            <div class="project-info">
+                <h3>osimliklar</h3>
+                <p>osimliklar haqida</p>
+            </div>
+        </a>
+
+        <a href="https://www.calendarpedia.com/" target="_blank" class="project-card">
+            <img src="./calendar.png  " alt="">
+            <div class="project-info">
+                <h3>qaysi kun boganini aniqlab beruvchi</h3>
+                <p></p>
+            </div>
+        </a>
+
+    </div>
+</section>
+
+    <section id="projects">
+      <h2 class="section-title">Ortolarim</h2>
+      <div class="gallery">
+        <div class="gallery-box">
+          <img src="./abdulaziz.png" alt="Sodiqjonov Abdulaziz">
+          <div class="gallery-content">
+            <h3>Sodiqjonov Abdulaziz</h3>
+          </div>
+        </div>
+        <div class="gallery-box">
+          <img src="./yusuf.png" alt="Hamidov Muhammadyusuf">
+          <div class="gallery-content">
+            <h3>Hamidov Muhammadyusuf</h3>
+          </div>
+        </div>
+        <div class="gallery-box">
+          <img src="./hoji.png" alt="Narzullayev Hojiakbar">
+          <div class="gallery-content">
+            <h3>Narzullayev Hojiakbar</h3>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="teachers">
+      <h2>Ustozlarim</h2>
+      <div class="ustoz-container">
+        <div class="ustoz-card">
+          <img src="inglis tili.png" alt="Inglis tili ustozi">
+          <div class="ustoz-content">
+            <h4>Shahlo Doniyorovna <br>Inglis tili</h4>
+          </div>
+        </div>
+        <div class="ustoz-card">
+          <img src="kurator.png" alt="kurator">
+          <div class="ustoz-content">
+            <h4>Naima Roziyeva <br>kurator</h4>
+          </div>
+        </div>
+        <div class="ustoz-card">
+          <img src="direktor.png" alt="direktor">
+          <div class="ustoz-content">
+            <h4>Madumarova Noila <br>direktor</h4>
+          </div>
+        </div>
+        <div class="ustoz-card">
+          <img src="matem.png" alt="matem">
+          <div class="ustoz-content">
+            <h4>Xoshboqov Otabek <br>matematika</h4>
+          </div>
+        </div>
+      </div>
+      <div class="ustoz-container">
+        <div class="ustoz-card">
+          <img src="frontend.png" alt="frontend">
+          <div class="ustoz-content">
+            <h4>Zoyidjon Nasretdinov<br>Frontend</h4>
+          </div>
+        </div>
+         <div class="ustoz-container">
+        <div class="ustoz-card">
+          <img src="tarix.png" alt="tarix">
+          <div class="ustoz-content">
+            <h4>Karimov Elyor<br>Tarix</h4>
+          </div>
+        </div>
+         <div class="ustoz-container">
+        <div class="ustoz-card">
+          <img src="fizika.png" alt="fizika">
+          <div class="ustoz-content">
+            <h4>Abdualiev Dilmurod<br>Fizika</h4>
+          </div>
+        </div>
+         <div class="ustoz-container">
+        <div class="ustoz-card" >
+          <img src="graf.png" alt="grafik dizayn">
+          <div class="ustoz-content">
+            <h4>Avduvalieva Iroda<br>Grafik dizayn</h4>
+          </div>
+        </div>
+        <div class="ustoz-container">
+        <div class="ustoz-card">
+          <img src="qoriqluvchi.png" alt="Qoriqluvchi">
+          <div class="ustoz-content">
+            <h4>Ravshanov Azizbek<br>Qoriqluvchi</h4>
+          </div>
+        </div>
+    </section>
+
+    <section id="achievements">
+      <h2 class="section-title">Mani Yutuqlarim</h2>
+      <div class="cards">
+        <article class="card">
+          <h3>Futbol</h3>
+          <p>Man professional futbol bilan shugullanaman va Bunyodkor akademiyasida oyniman biz yaqinda Soccer Kids Dostlik Cup va chegara davlatda 1-orin olib keldi</p>
+        </article>
+        <article class="card">
+          <h3>Ortolarim</h3>
+          <p>Mani maktabimdagi ortolarim — bu eng kotta yutuqim chunki ular har vaqt yordam beradi har doim yonimda va hech qachon tashlab ketmidi ular:Hojiakbar, Abdulaziz va Yusuf</p>
+        </article>
+        <article class="card">
+          <h3>Razvitiya liga</h3>
+          <p>bu ham futbol va biz qatnashvotgan turnir u apl va la ligaga oxshidi va biz hozir 1 chi orinda ketvomiz</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="contact">
+      <h2 class="section-title">Kontakt</h2>
+      <div class="cards">
+        <article class="card">
+          <h3>Telegram</h3>
+          <p>@demurryy</p>
+        </article>
+        <article class="card">
+          <h3>Instagram</h3>
+          <p>@demurryy__88</p>
+        </article>
+        <article class="card">
+          <h3>Telefon</h3>
+          <p>+998 50 552 22 88</p>
+        </article>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <h2>demurryy</h2>
+    <p>
+      Bu sayt HTML va CSS yordamida yaratildi
+      Dizayn zamonaviy neon va gradient uslubida qilganman
+    </p>
+    <div class="footer-buttons">
+      <button>Portfolio</button>
+      <button>Design</button>
+      <button>Frontend</button>
+    </div>
+  </footer>
+
+</body>
+</html>
